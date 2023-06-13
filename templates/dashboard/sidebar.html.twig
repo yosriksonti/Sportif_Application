@@ -1,0 +1,71 @@
+<div id="layoutSidenav_nav">
+    <nav class="sidenav shadow-right sidenav-light">
+        <div class="sidenav-menu">
+            <div class="nav accordion" id="accordionSidenav">
+                <!-- Sidenav Menu Heading (Account)-->
+                <!-- * * Note: * * Visible only on and above the sm breakpoint-->
+                    <div class="sidenav-menu-heading d-sm-none"> Account
+                                                    
+                </div>
+                <!-- Sidenav Link (Alerts)-->
+                <!-- * * Note: * * Visible only on and above the sm breakpoint-->
+                <a class="nav-link d-sm-none" href="#!">
+                    <div class="nav-link-icon">
+                        <i data-feather="bell"></i>
+                    </div>
+                    Alerts
+                                                                                    
+                                                    
+                    <span class="badge bg-warning-soft text-warning ms-auto">
+                        4 New!
+                                                        
+                    </span>
+                </a>
+                <!-- Sidenav Link (Messages)-->
+                <!-- * * Note: * * Visible only on and above the sm breakpoint-->
+                <a class="nav-link d-sm-none" href="#!">
+                    <div class="nav-link-icon">
+                        <i data-feather="mail"></i>
+                    </div>
+                    Messages
+                                                                                    
+                                                    
+                    <span class="badge bg-success-soft text-success ms-auto">
+                        2 New!
+                                                        
+                    </span>
+                </a>
+                <!-- Sidenav Menu Heading (Core)-->
+                <div class="sidenav-menu-heading">
+                    Dashboard
+                                                
+                </div>
+                <!-- Sidenav Accordion (Dashboard)-->
+                    <a class="nav-link" href="{{ path('app_application_index')}}">
+                        <div class="nav-link-icon">
+                            <i data-feather="bookmark"></i>
+                        </div>
+                        Applications
+                    </a>
+                    <a class="nav-link" href="{{ path('app_manager_index')}}">
+                        <div class="nav-link-icon">
+                            <i data-feather="users"></i>
+                        </div>
+                        Managers
+                    </a>
+                <!-- Sidenav Accordion (Pages)-->
+                
+            </div>
+        </div>
+        <div class="sidenav-footer">
+            <div class="sidenav-footer-content">
+                <div class="sidenav-footer-subtitle">
+                    Connecté en tant que:                 
+                </div>
+                <div class="sidenav-footer-title">  
+                    {{app.user.Email is defined ? app.user.Email : ''}} 
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>

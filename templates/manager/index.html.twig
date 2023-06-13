@@ -1,0 +1,78 @@
+{% extends "base.html.twig" %}
+{% block content %}
+    <main>
+        <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10" style="background-color: red;">
+            <div class="container-fluid px-4">
+                <div class="page-header-content">
+                    <div class="row align-items-center justify-content-between pt-3">
+                        <div class="col-auto mb-3">
+                            <h1 class="page-header-title">
+                                <div class="page-header-icon">
+                                    <i data-feather="user"></i>
+                                </div>
+                                Liste des Managers                       
+                            </h1>
+                        </div>
+                        <div class="col-12 col-xl-auto mb-3">
+                            <a class="btn btn-sm btn-light text-primary" href="{{ path('app_manager_new') }}">
+                                <i class="me-1" data-feather="plus"></i>
+                                Ajouter Manager                                                                                   
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main page content-->
+        <div class="container-fluid px-4">
+            <div class="card">
+                <div class="card-body table-responsive">
+                    <table class="table" id="datatablesSimple">
+                        <thead>
+                            <tr>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nom</th>
+                                    <th>Prenom</th>
+                                    <th>Numero Telephone</th>
+                                    <th>CIN</th>
+                                    <th>Référence</th>
+                                    
+                                    <th></th>
+                                </tr>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for manager in managers %}
+                                <tr>
+                                    <td>{{ manager.id }}</td>
+                                    <td>{{ manager.nom }}</td>
+                                    <td>{{ manager.prenom }}</td>
+                                    <td>{{ manager.numTel }}</td>
+                                    <td>{{ manager.cin }}</td>
+                                    <td>{{ manager.ref }}</td>
+                                    
+                                    <td>
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="{{ path('app_manager_show', {'id': manager.id}) }}">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </a>
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2" href="{{ path('app_manager_edit', {'id': manager.id}) }}">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2">
+                                            {{ include('manager/_delete_form.html.twig') }}
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% else %}
+                                <tr>
+                                    <td colspan="9">no records found</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

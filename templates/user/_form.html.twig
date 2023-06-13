@@ -1,0 +1,70 @@
+<div class="row">
+    {{ form_start(form) }}
+    <div class="col-xl-8">
+        <div class="card mb-4">
+            <div class="card-header">
+                Fiche User                                            
+            </div>
+            <div class="card-body">
+                <div class="row gx-3 mb-3">
+                    <div class="col-md-8">
+                        {{ form_label(form.Email, 'Email', {'label_attr':{'class':'small mb-1' }}) }}                                   
+                        {{ form_widget(form.Email, {'attr':{'class':'form-control' }}) }}                               
+                    </div>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.Email) }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form_label(form.isActive, 'Actif ?', {'label_attr':{'class':'small mb-1' }}) }}                                   
+                        {{ form_widget(form.isActive, {'attr':{'class':'form-control' }}) }}                               
+                    </div>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.isActive) }}
+                    </div>
+                </div>
+                {% if user.id is null or app.user.id == user.id or app.user.roles['ROLE_MASTER'] is defined %}
+                <div class="row gx-3 mb-3">
+                    <div class="col-md-12">                                
+                        {{ form_row(form.password.first, {'attr':{'required':'true' }})}}  
+                        {{ form_row(form.password.second, {'attr':{'required':'true' }})}}                      </div>                            
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.password) }}
+                    </div>
+                </div>
+                {% else %}
+                <div hidden>
+                    {{ form_widget(form.password) }}
+                </div>
+                {% endif %}
+
+                <div class="row gx-3 mb-3">
+                    <div class="col-md-12">
+                        {{ form_label(form.ref, 'Reférence', {'label_attr':{'class':'small mb-1' }}) }}                                   
+                        {{ form_widget(form.ref, {'attr':{'class':'form-control' }}) }}                               
+                    </div>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.ref) }}
+                    </div>
+                </div>
+                <div class="row gx-3 mb-3">
+                    <div class="col-md-12">
+                        {{ form_label(form.roles, 'Roles', {'label_attr':{'class':'small mb-1' }}) }}                                  
+                        <ul>
+                        {% for child in form.roles %}
+                            <hr>
+                            <li> {{ form_label(child) }} {{ form_widget(child) }}
+                        {% endfor %}
+                        </ul>                             
+                    </div>
+                    <div class="invalid-feedback">
+                        {{ form_errors(form.roles) }}
+                    </div>
+                </div>
+                <button class="fw-500 btn btn-primary">
+                        {{ button_label|default('Sauvegarder') }}
+                </button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
