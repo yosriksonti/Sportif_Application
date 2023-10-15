@@ -98,7 +98,7 @@ class ApplicationController extends AbstractController
             ->getRepository(Application::class)
             ->findOneBy(['secret' => $secret]);
         $this->user = $usr;
-        $response = new Response(json_encode(array('active' => $application->getActive(), 'request' => $request->getUri())));
+        $response = new Response(json_encode(array('active' => $application->getActive(), 'request' => $request->getClientIp())));
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;
