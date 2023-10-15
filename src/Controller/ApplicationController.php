@@ -98,8 +98,7 @@ class ApplicationController extends AbstractController
             ->getRepository(Application::class)
             ->findOneBy(['secret' => $secret]);
         $this->user = $usr;
-        echo  $request->server->get('HTTP_HOST') == $application->getNom();
-        $response = new Response(json_encode(array('active' => $application->getActive() && $request->server->get('HTTP_HOST') == $application->getNom())));
+        $response = new Response(json_encode(array('active' => $application->getActive(), 'request' => $request->server->get('HTTP_HOST'))));
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;
