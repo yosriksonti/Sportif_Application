@@ -102,7 +102,7 @@ class ApplicationController extends AbstractController
 
         // Perform a reverse DNS lookup to get the domain name
         $clientDomain = gethostbyaddr($clientIp);
-        $response = new Response(json_encode(array('active' => $application->getActive(), 'request' => $clientDomain)));
+        $response = new Response(json_encode(array('active' => $application->getActive() && $application->getNom() == $clientDomain)));
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;
